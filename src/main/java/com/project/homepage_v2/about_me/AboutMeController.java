@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AboutMeController {
 	@GetMapping("/about_me")
 	public String aboutMe() {
-		return "about_me";
+		return "aboutMe";
 	}
 }

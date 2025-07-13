@@ -8,7 +8,57 @@
 	ON B.ICODE = C.ICODE
 	WHERE B.ICODE = #{icode}
 		AND B.SEC_YN = 'N'
+		AND B.DEL_YN = 'N'
 	ORDER BY B.CREATED_AT DESC
 	LIMIT #{offset}, #{amount}
+</select>
+
+<select id="boardSel" parameterType="int" resultType="BoardSelVo">
+	SELECT 
+		B.IBOARD, 
+		B.ICODE, 
+		B.TITLE, 
+		B.CONTENTS, 
+		IFNULL(B.YOUTUBE_ID, '') AS YOUTUBE_ID, 
+		B.CREATED_AT, 
+		IFNULL(TH.NAME, '') AS THUMBNAIL, 
+		B.SEC_YN
+	FROM TBL_BOARD B
+	LEFT JOIN TBL_THUMBNAIL TH
+	ON B.IBOARD = TH.IBOARD
+	WHERE B.IBOARD = #{iboard}
+</select>
+
+<!-- 이전 글 -->
+<select id="prevPostGet" parameterType="int" resultType="PrevPostGetVo">
+	SELECT IBOARD, ICODE, TITLE, CREATED_AT
+	FROM TBL_BOARD
+	WHERE IBOARD <![CDATA[ < ]]> #{iboard}
+		AND ICODE = (SELECT ICODE FROM TBL_BOARD WHERE IBOARD = #{iboard})
+		AND DEL_YN = 'N'
+		AND SEC_YN = 'N'
+	ORDER BY IBOARD DESC
+	LIMIT 1
+</select>
+
+<!-- 다음 글 -->
+<select id="nextPostGet" parameterType="int" resultType="NextPostGetVo">
+	SELECT IBOARD, ICODE, TITLE, CREATED_AT
+	FROM TBL_BOARD
+	WHERE IBOARD <![CDATA[ > ]]> #{iboard}
+		AND ICODE = (SELECT ICODE FROM TBL_BOARD WHERE IBOARD = #{iboard})
+		AND DEL_YN = 'N'
+		AND SEC_YN = 'N'
+	ORDER BY IBOARD ASC
+	LIMIT 1
+</select>
+
+<!-- 페이지네이션 -->
+<select id="boardCntGet" parameterType="boardCntGetDto" resultType="int">
+	SELECT COUNT(*)
+	FROM TBL_BOARD
+	WHERE DEL_YN = 'N'
+		AND SEC_YN = 'N'
+		AND ICODE = #{icode}
 </select>
 </mapper>

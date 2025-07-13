@@ -10,14 +10,14 @@
 	    <div class="title-wrap">
 	        <h3 class="board-title" th:text="${BOARD_NAME}"></h3>
 	    </div>
-	    <a href="board-create.html" class="btn btn-create">작성</a>
+	    <th:block sec:authorize="isAuthenticated()"><a href="board-create.html" class="btn btn-create">작성</a></th:block>
 	</div>
 	
 	<!-- 스크롤 요소 -->
 	<div class="scroll-area">
 	    <!-- 카드 -->
 	    <th:block th:each="d : ${DATA}" th:object="${d}">
-		    <a href="#" class="card">
+		    <a th:href="@{/b/{url}/{iboard}(url=${BOARD_URL},iboard=${d.iboard})}" class="card">
 		    <div class="card-content">
 		        <!--
 		        <div class="thumb"><img src="img/img-noimage.png" alt="앨범 커버"/></div>
@@ -31,5 +31,7 @@
 		    </a>
 	    </th:block>
 	</div>
+	
+	<div th:replace="~{fragments/pagination :: pagination}"></div>
 </section>
 </html>

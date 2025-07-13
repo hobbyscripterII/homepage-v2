@@ -30,7 +30,7 @@ public class SecurityConfig {
 								// 예외 처리
 								"/error",
 								// 게시판
-								"/board/**"
+								"/about_me", "/b/notice/**", "/b/music/**", "/b/photo/**", "/b/review/**", "/b/daily/**"
 								)
 						.permitAll()
 						.anyRequest()

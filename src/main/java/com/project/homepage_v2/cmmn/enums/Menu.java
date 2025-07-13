@@ -20,9 +20,19 @@ public enum Menu {
 		this.URL = url;
 	}
 	
-	public static Menu getMenu(String url) {
+	public static Menu fromUrl(String url) {
 		for(Menu menu : Menu.values()) {
 			if(menu.URL.equals(url)) {
+				return menu;
+			}
+		}
+		
+		throw new IllegalArgumentException();
+	}
+	
+	public static Menu fromCode(String code) {
+		for(Menu menu : Menu.values()) {
+			if(menu.CODE.equals(code)) {
 				return menu;
 			}
 		}
