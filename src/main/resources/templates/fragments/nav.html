@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html 	lang="en"
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+		th:fragment="nav">
+<nav>
+    <a th:href="@{/}">홈</a>
+    <a th:href="@{/about_me}">소개</a>
+    <a th:href="@{/b/notice}">공지사항</a>
+    <a th:href="@{/b/music}">음악</a>
+    <a th:href="@{/b/photo}">사진</a>
+    <a th:href="@{/b/review}">리뷰</a>
+    <a th:href="@{/b/daily}">일상</a>
+    
+    <!-- thymeleaf spring security를 이용한 로그인/로그아웃 표출 처리 -->
+    <th:block sec:authorize="isAnonymous()"><a th:href="@{/login}">로그인</a></th:block>
+	<th:block sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></th:block>
+</nav>
+</html>

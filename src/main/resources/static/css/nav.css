@@ -1,0 +1,27 @@
+nav {
+    box-sizing: border-box;
+    padding: 2px;
+    /* 가로 스크롤 적용 */
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 1px solid #dbdbdb;
+}
+nav a {
+    display: inline-block; /* 텍스트 길이에 맞게 버튼 형태 유지 및 padding 안정적으로 적용 */
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+    color: #333;
+    font-size: 13px;
+    padding: 7px 13px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* 버튼 배경 색상 부드럽게 */
+}
+nav a:hover {
+    background-color: #e0e0e0;
+    border-color: #bbb;
+    color: #111;
+}
+/* nav 스크롤바 숨김 */
+nav::-webkit-scrollbar {
+    display: none;
+}

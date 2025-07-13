@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+}
+body {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    font-family: 'Spoqa Han Sans Neo';
+    max-height: 100vh;
+    overflow: hidden; /* body 전체 스크롤 막기 */
+}
+header, nav, footer {
+    flex-shrink: 0; /* 크기 줄어들지 않게 고정 */
+}
+input {
+    box-sizing: border-box;
+}
+#wrap {
+    max-width: 376px;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+    height: 95vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 버튼 */
+.btn {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 13px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    color: #fff;
+}
+/* 목록 */
+.btn-back {
+    background-color: #444;
+}
+.btn-back:hover {
+    background-color: #333;
+}
+/* 작성 */
+.btn-create {
+    background-color: #666;
+}
+.btn-create:hover {
+    background-color: #555;
+}
+/* 수정 */
+.btn-edit {
+    background-color: #888;
+}
+.btn-edit:hover {
+    background-color: #777;
+}
+/* 삭제 */
+.btn-delete {
+    background-color: #aaa;
+}
+.btn-delete:hover {
+    background-color: #999;
+}
+
+/* 스크롤바 커스텀 */
+.scroll-area::-webkit-scrollbar {
+  width: 6px; /* 세로 스크롤 너비 */
+}
+.scroll-area::-webkit-scrollbar-thumb {
+    background-color: #dbdbdb; /* 스크롤바 핸들 색상 */
+}
+.scroll-area::-webkit-scrollbar-track {
+    background-color: #f9f9f9; /* 트랙 색상 */
+}

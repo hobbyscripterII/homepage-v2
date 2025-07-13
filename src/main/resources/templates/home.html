@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html 	lang="en"
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+		layout:decorate="~{fragments/layout}"
+		layout:fragment="section">
+<section>
+    <h3 class="board-title">나의 공간</h3>
+    <div class="scroll-area">
+        <div class="intro">
+            <img th:src="@{img/img-pearl.png}" id="img-intro" alt="홈화면 이미지"/>
+            <p>사진, 음악, 리뷰, 일상을 담습니다.</p>
+        </div>
+
+        <div class="preview">
+            <h3>최근 게시물</h3>
+            <a href="#" class="card">
+                <div class="card-content">
+                    <p class="meta">
+                    <span class="category">사진</span>
+                    <span class="date">2025.07.12</span>
+                    </p>
+                    <h4 class="title">최근 일상</h4>
+                    <p class="desc">영화보러 갔다왔다.</p>
+                </div>
+            </a>
+
+            <a href="#" class="card">
+                <div class="card-content">
+                    <p class="meta">
+	                    <span class="category">음악</span>
+	                    <span class="date">2025.07.11</span>
+                    </p>
+                    <h4 class="title">검정치마 - Antifreeze</h4>
+                    <p class="desc">자주듣는 노래 중 하나다.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+</html>

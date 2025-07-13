@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html 	lang="en"
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+		layout:decorate="~{fragments/layout}"
+		layout:fragment="section">
+<section>
+  <h3 class="board-title">자기소개</h3>
+  <div class="scroll-area">
+    <div class="profile">
+      <img src="https://avatars.githubusercontent.com/u/135996109?v=4" alt="프로필 사진">
+      <h2>이주영</h2>
+      <!-- <p class="subtitle">개발자 · 사진가 · 음악 애호가</p> -->
+    </div>
+
+    <div class="about-desc">
+      <p>
+        소개 글 입니다.
+      </p>
+    </div>
+
+    <div class="about-info">
+      <ul>
+        <li><strong>위치</strong>대한민국</li>
+        <li><strong>직무</strong>웹 개발자</li>
+        <li><strong>깃허브</strong><a href="https://github.com/hobbyscripterII" target="_blank">github.com/hobbyscripterII</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</html>
