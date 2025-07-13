@@ -21,7 +21,14 @@ nav a:hover {
     border-color: #bbb;
     color: #111;
 }
+
 /* nav 스크롤바 숨김 */
 nav::-webkit-scrollbar {
     display: none;
+}
+
+/* nav active 기능 */
+nav a.active {
+  color: #000;
+  font-weight: bold;
 }

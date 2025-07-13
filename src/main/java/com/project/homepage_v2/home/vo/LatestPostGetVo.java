@@ -9,4 +9,5 @@ public class LatestPostGetVo {
 	private String title;
 	private String createdAt;
 	private String boardUrl;
+	private String boardName;
 }

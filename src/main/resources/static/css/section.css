@@ -45,7 +45,7 @@ section {
     border: 1px solid #dbdbdb;
     background-color: #f9f9f9;
     border-radius: 5px;
-    margin-bottom: 13px;
+    margin-bottom: 10px;
 }
 .card p, .desc {
     font-size: 13px;
@@ -71,13 +71,13 @@ section {
     margin-bottom: 10px;
 }
 .card .meta {
-    font-size: 0.8rem;
+    font-size: 13px;
     color: #999;
     display: flex;
     justify-content: space-between;
 }
 .card .title {
-    font-size: 0.9rem;
+    font-size: 14px;
     font-weight: 500;
     color: #333;
     margin: 0.35rem 0;
@@ -164,6 +164,7 @@ section {
 }
 .post-content h3 {
 	margin-top: 10px;
+	font-size: 16px;
 }
 .post-content ul {
     padding-left: 20px;
@@ -173,10 +174,8 @@ section {
 	font-size: 14px;
 }
 .post-nav-box {
-    display: flex;
+	display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 30px;
     margin-bottom: 10px;
 }
 .post-buttons {
@@ -185,31 +184,52 @@ section {
 
 /* 이전 글/다음 글 */
 .post-nav {
-    display: block;
-    background-color: #f5f5f5;
-    padding: 10px 12px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fdfdfd;
+  font-size: 13px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.2s ease;
 }
 .post-nav:hover {
-    background-color: #eaeaea;
+  background-color: #f5f5f5;
 }
 .post-nav .label {
-    font-size: 12px;
-    color: #999;
-    display: block;
-    margin-bottom: 3px;
+  flex-shrink: 0;
+  font-weight: 600;
+  color: #888;
+  font-size: 11px;
+  margin-right: 10px;
 }
 .post-nav .title {
-	display: block;
-    font-size: 14px;
-    color: #111;
-    font-weight: 500;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  flex-grow: 1;
+  font-weight: 500;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.post-nav-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 480px) {
+  .post-nav {
+    font-size: 13px;
+  }
+  .post-nav .label {
+    font-size: 10px;
+  }
+  .post-nav .title {
+    font-size: 13px;
+  }
 }
 
 /* 로그인 */

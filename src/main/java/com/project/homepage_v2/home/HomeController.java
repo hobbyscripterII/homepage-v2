@@ -28,8 +28,10 @@ public class HomeController {
 			String icode = vo.getIcode();
 			Menu menu = Menu.fromCode(icode);
 			String boardUrl = menu.URL;
+			String boardName = menu.NAME;
 			
 			vo.setBoardUrl(boardUrl);
+			vo.setBoardName(boardName);
 		}
 
 		model.addAttribute(DATA, latestPostGet);
