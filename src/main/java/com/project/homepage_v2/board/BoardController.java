@@ -70,6 +70,8 @@ public class BoardController {
 		PrevPostGetVo prevPostGet = service.prevPostGet(iboard);
 		NextPostGetVo nextPostGet = service.nextPostGet(iboard);
 		
+		log.info("boardSel = {}", boardSel);
+		
 		model.addAttribute(DATA, boardSel);
 		model.addAttribute(PREV_POST, prevPostGet);
 		model.addAttribute(NEXT_POST, nextPostGet);

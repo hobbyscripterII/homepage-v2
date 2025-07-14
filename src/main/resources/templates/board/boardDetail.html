@@ -43,7 +43,7 @@
         -->
     	
     	<!-- 음악 추천 게시글일 경우 유튜브 영상 표출 -->
-    	<th:block th:if="*{youtubeId} != ''">
+    	<th:block th:if="*{youtubeId} != '' and *{youtubeId} != null">
     		<iframe th:src="'https://www.youtube.com/embed/' + *{youtubeId}"></iframe>
     	</th:block>
     	
