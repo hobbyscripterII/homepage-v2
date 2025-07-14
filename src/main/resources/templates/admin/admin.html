@@ -8,7 +8,7 @@
 <section>
     <!-- <h3 class="board-title">로그인</h3> -->
 
-	<div class="admin-toolbar-row">
+	<div class="admin-toolbar">
 		<select class="menu-list">
 			<option value="notice">공지사항</option>
 			<option value="music">음악</option>
@@ -27,7 +27,7 @@
 			<button type="button">공개</button>
 			<button type="button">비공개</button>
 			<button type="button">삭제</button>
-			<button type="button">작성</button>
+			<button type="button" th:onclick="|location.href='@{/a/i}'|">작성</button>
 		</div>
 	</div>
 
@@ -36,7 +36,7 @@
 			<tr>
 				<th style="width: 20px"></th>
 				<th style="width: 50px">카테고리</th>
-				<th style="width: auto">제목</th>
+				<th style="width: auto; text-align: center">제목</th>
 				<th style="width: 50px">공개 여부</th>
 				<!-- <th style="max-width: 50px">작성일</th> -->
 			</tr>
@@ -44,9 +44,9 @@
 		<tbody>
 			<tr th:each="d : ${DATA}" th:object="${d}">
 				<td><input type="checkbox" class="row-check" th:value="*{iboard}"/></td>
-				<td th:text="*{boardName}"></td>
+				<td th:text="*{boardName}" style="text-align: center"></td>
 				<td><a th:href="@{/b/{url}/{iboard}(url=${BOARD_URL},iboard=${d.iboard})}"><span th:text="*{title}"></span></a></td>
-				<td th:text="*{secYn} == 'N' ? '공개' : '비공개'"></td>
+				<td th:text="*{secYn} == 'N' ? '공개' : '비공개'" style="text-align: center"></td>
 				<!-- <td th:text="*{createdAt}"></td> -->
 			</tr>
 		</tbody>

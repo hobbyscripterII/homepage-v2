@@ -28,6 +28,15 @@ import lombok.extern.slf4j.Slf4j;
 public class AdminController {
 	private final AdminService service;
 	
+	@GetMapping("/i")
+	public String adminBoardInsert(Model model) {
+//		List<MenuCodeGetVo> menuCodeGet = service.menuCodeGet();
+		
+//		model.addAttribute(MENU_LIST, menuCodeGet);
+		
+		return "board/boardInsert";
+	}
+	
 	@GetMapping("/{url}")
 	public String admin(@PathVariable("url") String url,
 						@RequestParam(name = "page", defaultValue = "1", required = true) int page,
