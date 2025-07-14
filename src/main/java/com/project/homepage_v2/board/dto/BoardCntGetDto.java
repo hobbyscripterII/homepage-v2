@@ -1,4 +1,4 @@
-package com.project.homepage_v2.board.vo;
+package com.project.homepage_v2.board.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

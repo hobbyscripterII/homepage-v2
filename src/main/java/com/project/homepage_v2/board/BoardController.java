@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.homepage_v2.board.dto.BoardCntGetDto;
 import com.project.homepage_v2.board.dto.BoardGetDto;
-import com.project.homepage_v2.board.vo.BoardCntGetDto;
 import com.project.homepage_v2.board.vo.BoardGetVo;
 import com.project.homepage_v2.board.vo.BoardSelVo;
 import com.project.homepage_v2.board.vo.NextPostGetVo;
@@ -69,8 +69,6 @@ public class BoardController {
 		BoardSelVo boardSel = service.boardSel(iboard);
 		PrevPostGetVo prevPostGet = service.prevPostGet(iboard);
 		NextPostGetVo nextPostGet = service.nextPostGet(iboard);
-		
-		log.info("boardSel = {}", boardSel);
 		
 		model.addAttribute(DATA, boardSel);
 		model.addAttribute(PREV_POST, prevPostGet);

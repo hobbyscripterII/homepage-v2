@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.homepage_v2.admin.AdminMapper">
+<select id="menuCodeGet" resultType="MenuCodeGetVo">
+	SELECT ICODE, NAME AS MENU_NAME
+	FROM TBL_CODE
+	WHERE ICODE LIKE 'B%'
+		AND ICODE NOT IN('B006', 'B007')
+</select>
+
+<select id="adminBoardGet" parameterType="AdminBoardGetDto" resultType="AdminBoardGetVo">
+	SELECT B.IBOARD, B.ICODE, C.NAME AS BOARD_NAME, B.TITLE, B.SEC_YN, B.DEL_YN, DATE_FORMAT(B.CREATED_AT, '%Y-%m-%d') AS CREATED_AT
+	FROM TBL_BOARD B
+	INNER JOIN TBL_CODE C
+	ON B.ICODE = C.ICODE
+	<where>
+		<choose>
+			<when test="icode != 'default'">
+				B.ICODE = #{icode}
+			</when>
+		</choose>
+	AND DEL_YN = 'N'
+	</where>
+	ORDER BY B.CREATED_AT DESC
+	LIMIT #{offset}, #{amount}
+</select>
+
+<!-- 페이지네이션 -->
+<select id="adminBoardCntGet" parameterType="AdminBoardCntGetDto" resultType="int">
+	SELECT COUNT(*)
+	FROM TBL_BOARD
+	<where>
+		<choose>
+			<when test="icode != 'default'">
+				ICODE = #{icode}
+			</when>
+		</choose>
+	AND DEL_YN = 'N'
+	</where>
+</select>
+</mapper>

@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	setVh();
+	$(window).on('resize', setVh);
+	
 	// nav 가로 스크롤 기능
 	let $nav = $('nav');
 
@@ -41,4 +44,10 @@ $(document).ready(function() {
 			$nav.animate({ scrollLeft: scrollLeft }, 300);
 		}
 	}
-})
+});
+
+function setVh() {
+	let vh = window.innerHeight * 0.01;
+	
+	document.documentElement.style.setProperty('--vh', `${vh}px`);
+}

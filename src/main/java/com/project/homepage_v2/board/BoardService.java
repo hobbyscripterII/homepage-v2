@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.project.homepage_v2.board.dto.BoardCntGetDto;
 import com.project.homepage_v2.board.dto.BoardGetDto;
-import com.project.homepage_v2.board.vo.BoardCntGetDto;
 import com.project.homepage_v2.board.vo.BoardGetVo;
 import com.project.homepage_v2.board.vo.BoardSelVo;
 import com.project.homepage_v2.board.vo.NextPostGetVo;

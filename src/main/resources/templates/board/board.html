@@ -6,6 +6,7 @@
 		layout:decorate="~{fragments/layout}"
 		layout:fragment="section">
 <section>
+	<!-- 스크롤 요소 -->
 	<div class="scroll-area">
 		<!--
 		<div class="board-header">
@@ -15,8 +16,7 @@
 		    <th:block sec:authorize="isAuthenticated()"><a href="board-create.html" class="btn btn-create">작성</a></th:block>
 		</div>
 		-->
-	
-	<!-- 스크롤 요소 -->
+
 	    <!-- 카드 -->
 	    <th:block th:each="d : ${DATA}" th:object="${d}">
 		    <a th:href="@{/b/{url}/{iboard}(url=${BOARD_URL},iboard=${d.iboard})}" class="card">

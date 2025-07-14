@@ -5,6 +5,7 @@
 		th:fragment="nav">
 <nav>
     <a th:href="@{/}">홈</a>
+	<th:block sec:authorize="hasRole('ADMIN')"><a th:href="@{/a/notice}">관리</a></th:block>
     <a th:href="@{/about_me}">소개</a>
     <a th:href="@{/b/notice}">공지사항</a>
     <a th:href="@{/b/music}">음악</a>

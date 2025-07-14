@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html 	lang="en"
+		xmlns:th="http://www.thymeleaf.org"
+		th:fragment="paginationAdmin">
+<div class="pagination">
+    <a th:if="${1<PAGINATION.start}" th:href="@{/a/{url}(url=${BOARD_URL},page=1)}" class="page arrow">«</a>
+    <a th:if="${1<PAGINATION.start}" th:href="@{/a/{url}(url=${BOARD_URL},page=${PAGINATION.start-PAGINATION.pageCnt})}" class="page arrow">‹</a>
+    	
+	<th:block th:if="${PAGINATION.realEnd>0}" th:each="page,i:${#numbers.sequence(PAGINATION.start,PAGINATION.end)}">
+		<a class="page active" th:if="${i.current==PAGINATION.page}" th:href="@{/a/{url}(url=${BOARD_URL},page=${i.current})}" th:text="${i.current}"></a>
+		<a class="page" th:if="${i.current!=PAGINATION.page}" th:href="@{/a/{url}(url=${BOARD_URL},page=${i.current})}" th:text="${i.current}"></a>
+	</th:block>
+	
+    <a th:if="${PAGINATION.end<PAGINATION.realEnd}" th:href="@{/a/{url}(url=${BOARD_URL},page=${PAGINATION.end+1},amount=${PAGINATION.amount})}" class="page arrow">›</a>
+    <a th:if="${PAGINATION.end<PAGINATION.realEnd}" th:href="@{/a/{url}(url=${BOARD_URL},page=${PAGINATION.realEnd},amount=${PAGINATION.amount})}" class="page arrow">»</a>
+</div>
+</html>
