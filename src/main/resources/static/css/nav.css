@@ -9,9 +9,6 @@ nav {
     border-bottom: 1px solid #dbdbdb;
     background-color: #fefefe;
     scrollbar-width: none;
-    position: sticky;
-    top: 42px;
-    z-index: 9998;
 }
 nav::-webkit-scrollbar {
     display: none;

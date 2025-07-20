@@ -39,7 +39,7 @@ public class BoardController {
 		String icode = menu.CODE;
 		String boardName = menu.NAME;
 		
-		int amount = 10;
+		int amount = 5;
 		int offset = getOffset(page, amount);
 		
 		// 게시글 정보

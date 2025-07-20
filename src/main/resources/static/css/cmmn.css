@@ -6,11 +6,12 @@ a {
     text-decoration: none;
 }
 body {
+	padding: 20px;
     box-sizing: border-box;
     width: 100%;
     font-family: 'Spoqa Han Sans Neo';
     /* overflow: hidden; */ /* body 전체 스크롤 막기 */
-    background-color: var(--kirby-bg-light);
+    background-color: #fff;
 }
 header, nav, footer {
     flex-shrink: 0; /* 크기 줄어들지 않게 고정 */
@@ -21,7 +22,7 @@ input {
 #wrap {
     max-width: 376px;
     border-radius: 10px;
-    height: calc(100vh - 20px); /* body의 padding을 제외한 높이 */
+    height: auto;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
