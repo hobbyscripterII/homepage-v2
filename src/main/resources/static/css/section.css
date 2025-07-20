@@ -203,7 +203,10 @@ section {
     padding-left: 20px;
     margin: 10px 0;
 }
-.post-content ol li {
+.post-content ol {
+	padding-left: 15px;
+}
+.post-content ol li, .post-content ul li {
     font-size: 13.5px;
     line-height: 1.6;
 }

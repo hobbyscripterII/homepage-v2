@@ -57,7 +57,7 @@ public class AdminService {
 		int iadmin = iadminGet();
 		String menu = dto.getMenu();
 		String icode = Menu.fromUrl(menu).CODE;
-		String secYn = dto.getSecYn() == "true" ? "N" : "Y";
+		String secYn = dto.getSecYn() == "false" ? "N" : "Y";
 		
 		dto.setIcode(icode);
 		dto.setIadmin(iadmin);
