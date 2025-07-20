@@ -15,37 +15,131 @@
 		box-sizing: border-box;
 		max-width: 100%;
 	}
-	#btn-thumbnail {
-		width: -webkit-fill-available;
-		padding: 8px 10px;
-	}
 </style>
 <section>
-	<!-- <h3 class="board-title">게시글 작성</h3> -->
-    <div class="edit-group">
-	    <input type="text" id="title" name="title" placeholder="제목을 입력하세요."/>
-		
-		<div class="admin-toolbar mt-2">
-			<select class="menu-list p-10">
-				<option value="notice">공지사항</option>
-				<option value="music">음악</option>
-				<option value="photo">사진</option>
-				<option value="review">리뷰</option>
-				<option value="daily">일상</option>
-			</select>
-		</div>
-		
-	    <input class="mt-2" type="hidden" id="youtubeId" name="youtubeId" placeholder="유튜브 링크를 입력하세요."/>
-		<a href="#" class="btn btn-create mt-2" id="btn-thumbnail">썸네일 사진 등록</a>
-    </div>
-    <div class="edit-group">
-    <textarea name="content" id="editor"></textarea>
-    </div>
-    <div class="post-buttons">
-        <a href="#" class="btn btn-create">작성</a>
-    </div>
+	<!-- 게시글 작성 -->
+	<th:block th:if="${DATA == null}">
+	    <div class="edit-group">
+		    <input type="text" id="title" name="title" placeholder="제목을 입력하세요."/>
+		    <input type="file" id="thumbnail" name="thumbnail" onchange="preview(this)"/>
+			
+			<th:block th:if="${DATA != null and DATA.iboard != null}">
+			    <input type="hidden" id="iboard" th:value="${DATA.iboard}"/>
+			</th:block>
+			
+			<div class="admin-toolbar mt-2">
+				<select class="menu-list p-10">
+					<option value="notice">공지사항</option>
+					<option value="music">음악</option>
+					<option value="photo">사진</option>
+					<option value="review">리뷰</option>
+					<option value="daily">일상</option>
+				</select>
+			</div>
+			
+		    <input class="mt-2" type="hidden" id="youtubeId" name="youtubeId" placeholder="유튜브 링크를 입력하세요." onchange="youtubeIdGet(this)"/>
+			<a href="#" class="btn btn-create mt-2" id="thumbnail-btn">썸네일 사진 수정</a>
+	 		<div class="thumb center">
+				<img id="thumbnail-preview" alt="썸네일"/>
+	        </div>
+	    </div>
+	    
+	    <div class="edit-group">
+	    	<textarea name="content" id="editor"></textarea>
+	    </div>
+	    
+	    <div class="post-buttons">
+	    	<!-- 공개 여부 -->
+			<div class="toggle">
+				<span class="label">비공개 여부</span>
+				
+				<label class="switch">
+				    <input type="checkbox" id="secYn">
+				    <span class="slider"></span>
+				</label>
+			</div>
+	    
+	        <a href="#" class="btn btn-create" onclick="insert()">작성</a>
+	    </div>
+	</th:block>
+	<!-- 게시글 수정 -->
+	<th:block th:if="${DATA != null}" th:object="${DATA}">
+	    <div class="edit-group">
+		    <input type="text" id="title" name="title" th:value="*{title}" placeholder="제목을 입력하세요."/>
+		    <input type="file" id="thumbnail" name="thumbnail" onchange="preview(this)"/>
+			
+			<th:block th:if="${DATA != null and DATA.iboard != null}">
+			    <input type="hidden" id="iboard" th:value="${DATA.iboard}"/>
+			</th:block>
+			
+			<div class="admin-toolbar mt-2">
+				<select class="menu-list p-10">
+					<option th:value="${BOARD_URL}" th:text="${BOARD_NAME}"></option>
+					<option value="notice">공지사항</option>
+					<option value="music">음악</option>
+					<option value="photo">사진</option>
+					<option value="review">리뷰</option>
+					<option value="daily">일상</option>
+				</select>
+			</div>
+			
+		    <input class="mt-2" type="hidden" id="youtubeId" name="youtubeId" placeholder="유튜브 링크를 입력하세요."/>
+			<a href="#" class="btn btn-create mt-2" id="thumbnail-btn">썸네일 사진 등록</a>
+	 		<div class="thumb center">
+				<img id="thumbnail-preview" alt="썸네일"/>
+	        </div>
+	    </div>
+	    
+	    <div class="edit-group">
+	    	<textarea name="content" id="editor"></textarea>
+	    </div>
+	    
+	    <div class="post-buttons">
+	    	<!-- 공개 여부 -->
+			<div class="toggle">
+				<span class="label">비공개 여부</span>
+				
+				<label class="switch">
+				    <input th:if="*{secYn == 'Y'}" type="checkbox" id="secYn" checked>
+				    <input th:if="*{secYn == 'N'}" type="checkbox" id="secYn">
+				    <span class="slider"></span>
+				</label>
+			</div>
+	    
+	        <a href="#" class="btn btn-create" onclick="update()">수정</a>
+	    </div>
+	</th:block>
+    
+    <th:block th:replace="~{fragments/modal :: modal}"></th:block>
 </section>
 <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
 <script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
 <script th:src="@{/js/board.js}"></script>
+<script th:inline="javascript">
+//ck editor5 초기화
+ClassicEditor.create(document.querySelector('#editor'), {
+	language : 'ko',
+	ckfinder : {uploadUrl : '/image_upload'},
+	toolbar  : ['heading', '|', 'bold', 'link', 'bulletedList', 'blockQuote', 'imageUpload', 'inertTable', 'undo', 'redo']
+})
+.then(e => {
+	editor = e;
+	
+	// 게시글 수정 시 웹에디터 폼에 작성했던 글 불러오기
+	let data = [[${DATA}]] || null;
+	
+	if(data != null) {
+		let contents = data.contents || ''; // 게시글 내용
+		
+		editor.setData(contents);
+	} else {
+		let $secYn = $('#secYn'); // 공개 여부
+		
+		// 게시글 작성 시 비공개 여부 기본 값
+		// $secYn.prop('checked', true);
+	}
+}).catch(error => {
+	console.error(error);
+});
+</script>
 </html>

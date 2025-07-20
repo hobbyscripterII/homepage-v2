@@ -24,4 +24,3 @@ $btnLogin.click(function() {
 		$f.submit();
 	}
 });
-

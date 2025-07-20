@@ -9,7 +9,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.Data;
+
+@Data
 public class MyUserDetails implements UserDetails {
+	private int iadmin;
 	private String id;
 	private String pwd;
 	private String name;
@@ -21,6 +25,9 @@ public class MyUserDetails implements UserDetails {
 		list.add(new SimpleGrantedAuthority(ROLE_PREFIX.NAME + role));
 		
 		return list;
+	}
+	public int getIadmin() {
+		return iadmin;
 	}
 	public String getId() {
 		return id;

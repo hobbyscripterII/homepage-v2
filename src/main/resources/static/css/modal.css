@@ -47,7 +47,7 @@
   cursor: pointer;
   color: #888;
 }
-.modal-confirm {
+.modal-confirm, .modal-yes, .modal-cancel {
   background-color: #444;
   color: #fff;
   padding: 8px 16px;
@@ -56,6 +56,6 @@
   cursor: pointer;
   font-size: 14px;
 }
-.modal-confirm:hover {
+.modal-confirm:hover, .modal-yes:hover, .modal-cancel:hover {
   background-color: #222;
 }

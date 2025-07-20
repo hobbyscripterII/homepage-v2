@@ -12,7 +12,9 @@ import com.project.homepage_v2.board.vo.NextPostGetVo;
 import com.project.homepage_v2.board.vo.PrevPostGetVo;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class BoardService {

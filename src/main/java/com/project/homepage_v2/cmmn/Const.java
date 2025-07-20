@@ -8,4 +8,6 @@ public class Const {
 	public static final String NEXT_POST = "NEXT_POST";
 	public static final String PAGINATION = "PAGINATION";
 	public static final String MENU_LIST = "MENU_LIST";
+	
+	public static final String IMG_SUFFIX_PATH = "/img/";
 }

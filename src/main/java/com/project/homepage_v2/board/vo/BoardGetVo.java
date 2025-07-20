@@ -10,4 +10,5 @@ public class BoardGetVo {
 	private String boardName;
 	private String title;
 	private String createdAt;
+	private String secYn;
 }

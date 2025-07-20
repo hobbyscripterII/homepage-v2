@@ -4,16 +4,30 @@
 		th:fragment="modal">
 <div class="modal-overlay" style="display: none;"></div>
 
-<div class="modal" style="display: none;">
+<div class="modal" id="default-modal" style="display: none;">
  <div class="modal-header">
    <h4 class="modal-title">알림</h4>
    <button class="modal-close">&times;</button>
  </div>
   <div class="modal-body">
-    <p>모달 내용이 여기에 들어갑니다.</p>
+    <p></p>
   </div>
   <div class="modal-footer">
     <button class="modal-confirm">닫기</button>
+  </div>
+</div>
+
+<div class="modal" id="confirm-modal" style="display: none;">
+  <div class="modal-header">
+    <h4 class="modal-title">확인</h4>
+    <button class="modal-close">&times;</button>
+  </div>
+  <div class="modal-body">
+    <p></p>
+  </div>
+  <div class="modal-footer">
+    <button class="modal-yes">확인</button>
+    <button class="modal-cancel">취소</button>
   </div>
 </div>
 </html>

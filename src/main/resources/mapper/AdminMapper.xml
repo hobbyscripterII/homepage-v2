@@ -25,6 +25,52 @@
 	LIMIT #{offset}, #{amount}
 </select>
 
+<select id="adminBoardSel" parameterType="int" resultType="BoardSelVo">
+	SELECT 
+		B.IBOARD, 
+		B.ICODE, 
+		B.TITLE, 
+		B.CONTENTS, 
+		IFNULL(B.YOUTUBE_ID, '') AS YOUTUBE_ID, 
+		B.CREATED_AT, 
+		IFNULL(TH.NAME, '') AS THUMBNAIL, 
+		B.SEC_YN
+	FROM TBL_BOARD B
+	LEFT JOIN TBL_THUMBNAIL TH
+	ON B.IBOARD = TH.IBOARD
+	WHERE B.IBOARD = #{iboard}
+</select>
+
+<insert id="adminBoardIns" parameterType="AdminBoardInsDto" useGeneratedKeys="true" keyColumn="iboard">
+	INSERT INTO TBL_BOARD(ICODE, IADMIN, TITLE, CONTENTS, YOUTUBE_ID, SEC_YN) VALUES(
+		#{icode},
+		#{iadmin},
+		#{title},
+		#{contents},
+		#{youtubeId},
+		#{secYn}
+	)
+	<selectKey keyProperty="iboard" resultType="integer">
+		SELECT LAST_INSERT_ID()
+	</selectKey>
+</insert>
+
+<update id="adminBoardUpd" parameterType="AdminBoardUpdDto">
+	UPDATE TBL_BOARD SET
+	ICODE = #{icode},
+	TITLE = #{title},
+	CONTENTS = #{contents},
+	YOUTUBE_ID = #{youtubeId},
+	SEC_YN = #{secYn}
+	WHERE IBOARD = #{iboard}
+</update>
+
+<delete id="adminBoardDel" parameterType="int">
+	UPDATE TBL_BOARD
+	SET DEL_YN = 'Y'
+	WHERE IBOARD = #{iboard}
+</delete>
+
 <!-- 페이지네이션 -->
 <select id="adminBoardCntGet" parameterType="AdminBoardCntGetDto" resultType="int">
 	SELECT COUNT(*)
@@ -38,4 +84,20 @@
 	AND DEL_YN = 'N'
 	</where>
 </select>
+
+<insert id="thumbnailIns" parameterType="ThumbnailInsDto">
+	INSERT INTO TBL_THUMBNAIL(IBOARD, NAME) VALUES(
+		#{iboard},
+		#{name}
+	)
+</insert>
+
+<update id="thumbnailUpd" parameterType="ThumbnailUpdDto">
+	INSERT INTO TBL_THUMBNAIL(IBOARD, NAME) VALUES(
+		#{iboard},
+		#{name}
+	)
+	ON DUPLICATE KEY UPDATE
+	NAME = VALUES(NAME)
+</update>
 </mapper>
