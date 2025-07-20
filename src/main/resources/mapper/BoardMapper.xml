@@ -2,10 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.homepage_v2.board.BoardMapper">
 <select id="boardGet" parameterType="BoardGetDto" resultType="BoardGetVo">
-	SELECT B.IBOARD, B.ICODE, C.NAME AS BOARD_NAME, B.TITLE, B.CREATED_AT
+	SELECT B.IBOARD, B.ICODE, C.NAME AS BOARD_NAME, B.TITLE, IFNULL(T.NAME, '') AS THUMBNAIL, IFNULL(B.YOUTUBE_ID, '') AS YOUTUBE_ID, B.CREATED_AT
 	FROM TBL_BOARD B
 	INNER JOIN TBL_CODE C
-	ON B.ICODE = C.ICODE
+		ON B.ICODE = C.ICODE
+	LEFT JOIN TBL_THUMBNAIL T
+		ON B.IBOARD = T.IBOARD
 	WHERE B.ICODE = #{icode}
 		AND B.SEC_YN = 'N'
 		AND B.DEL_YN = 'N'

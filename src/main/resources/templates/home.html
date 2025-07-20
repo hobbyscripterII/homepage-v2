@@ -7,23 +7,32 @@
 		layout:fragment="section">
 <section>
     <div class="scroll-area">
-	    <!-- <h3 class="board-title">나의 공간</h3> -->
         <div class="intro">
-            <img src="https://i.pinimg.com/736x/8a/8b/12/8a8b124532f20eded3804feddd677bc8.jpg" id="img-intro" alt="홈화면 이미지"/>
+            <img src="https://avatars.githubusercontent.com/u/135996109?v=4" id="img-intro" alt="홈화면 이미지"/>
             <p>음악, 사진, 리뷰, 일상을 담습니다.</p>
         </div>
 
         <div class="preview">
 	        <h3>최근 게시물</h3>
 	        
-	        <a th:href="@{/b/{url}/{iboard}(url=*{boardUrl},iboard=*{iboard})}" class="card" th:each="d : ${DATA}" th:object="${d}">
+	        <a th:href="@{/b/{url}/{iboard}(url=*{boardUrl},iboard=*{iboard})}" class="card card-horizontal" th:each="d : ${DATA}" th:object="${d}">
+				<th:block th:if="*{thumbnail != ''}">
+					<div class="thumb-left">
+						<img th:src="*{thumbnail}" alt="썸네일" />
+					</div>
+				</th:block>
+				<th:block th:if="*{youtubeId != ''}">
+					<div class="thumb-left">
+						<img th:src="|https://img.youtube.com/vi/*{youtubeId}/0.jpg|" alt="썸네일" />
+					</div>
+				</th:block>
+				
 	            <div class="card-content">
 	                <p class="meta">
-	                <span class="category" th:text="*{boardName}"></span>
-	                <span class="date" th:text="*{createdAt}"></span>
+		                <span class="category" th:text="*{boardName}"></span>
+		                <span class="date" th:text="*{createdAt}"></span>
 	                </p>
 	                <h4 class="title" th:text="*{title}"></h4>
-	                <!-- <p class="desc">영화보러 갔다왔다.</p> -->
 	            </div>
 	        </a>
         </div>

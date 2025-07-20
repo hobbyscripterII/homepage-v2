@@ -8,10 +8,9 @@ a {
 body {
     box-sizing: border-box;
     width: 100%;
-    padding: 10px;
     font-family: 'Spoqa Han Sans Neo';
-    max-height: 100vh;
-    overflow: hidden; /* body 전체 스크롤 막기 */
+    /* overflow: hidden; */ /* body 전체 스크롤 막기 */
+    background-color: var(--kirby-bg-light);
 }
 header, nav, footer {
     flex-shrink: 0; /* 크기 줄어들지 않게 고정 */
@@ -21,12 +20,12 @@ input {
 }
 #wrap {
     max-width: 376px;
-    border: 1px solid #dbdbdb;
     border-radius: 10px;
     height: calc(100vh - 20px); /* body의 padding을 제외한 높이 */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    background-color: #fff;
 }
 
 /* 버튼 */

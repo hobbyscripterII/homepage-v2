@@ -10,4 +10,6 @@ public class LatestPostGetVo {
 	private String createdAt;
 	private String boardUrl;
 	private String boardName;
+	private String thumbnail;
+	private String youtubeId;
 }

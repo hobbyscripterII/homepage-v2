@@ -10,4 +10,6 @@ public class Const {
 	public static final String MENU_LIST = "MENU_LIST";
 	
 	public static final String IMG_SUFFIX_PATH = "/img/";
+	
+	public static final int SUCCESS_CODE = 1;
 }

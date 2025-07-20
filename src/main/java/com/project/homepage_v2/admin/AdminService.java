@@ -4,7 +4,13 @@ import static com.project.homepage_v2.cmmn.Const.IMG_SUFFIX_PATH;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,7 +24,9 @@ import com.project.homepage_v2.admin.dto.AdminBoardInsDto;
 import com.project.homepage_v2.admin.dto.AdminBoardUpdDto;
 import com.project.homepage_v2.admin.dto.ThumbnailInsDto;
 import com.project.homepage_v2.admin.dto.ThumbnailUpdDto;
+import com.project.homepage_v2.admin.vo.AdminBoardContentsGetAllVo;
 import com.project.homepage_v2.admin.vo.AdminBoardGetVo;
+import com.project.homepage_v2.admin.vo.AdminThumbnailNameGetAllVo;
 import com.project.homepage_v2.admin.vo.MenuCodeGetVo;
 import com.project.homepage_v2.board.vo.BoardSelVo;
 import com.project.homepage_v2.cmmn.AssertUtil;
@@ -60,7 +68,7 @@ public class AdminService {
 		if(AssertUtil.notNull(adminBoardInsRows)) {
 			if(AssertUtil.notNull(mf)) {
 				int iboard = dto.getIboard();
-				String uploadPath = fileUtil.fileUpload(mf, IMG_SUFFIX_PATH);
+				String uploadPath = fileUtil.uploadFile(mf, IMG_SUFFIX_PATH);
 				
 				ThumbnailInsDto thumbnailInsDto = new ThumbnailInsDto();
 				
@@ -83,7 +91,7 @@ public class AdminService {
 		int iadmin = iadminGet();
 		String menu = dto.getMenu();
 		String icode = Menu.fromUrl(menu).CODE;
-		String secYn = dto.getSecYn() == "true" ? "N" : "Y";
+		String secYn = dto.getSecYn() == "true" ? "Y" : "N";
 		
 		dto.setIcode(icode);
 		dto.setIadmin(iadmin);
@@ -94,7 +102,7 @@ public class AdminService {
 		if(AssertUtil.notNull(adminBoardUpdRows)) {
 			if(AssertUtil.notNull(mf)) {
 				int iboard = dto.getIboard();
-				String uploadPath = fileUtil.fileUpload(mf, IMG_SUFFIX_PATH);
+				String uploadPath = fileUtil.uploadFile(mf, IMG_SUFFIX_PATH);
 				
 				ThumbnailUpdDto thumbnailUpdDto = new ThumbnailUpdDto();
 				
@@ -123,6 +131,57 @@ public class AdminService {
 		}
 		
 		return boardDelRows;
+	}
+	
+	@Transactional
+	public void adminBoardRemoveFileTask() throws IOException {
+		// 게시글 찾기
+		List<AdminBoardContentsGetAllVo> adminBoardContentsGetAll = mapper.adminBoardContentsGetAll();
+		// 썸네일 찾기
+		List<AdminThumbnailNameGetAllVo> adminThumbnailNameGetAll = mapper.adminThumbnailNameGetAll();
+		// 게시판 이미지 담을 리스트
+		List<String> imgList = new ArrayList<String>();
+		// 썸네일 이미지 담을 셋
+		Set<String> fileNameList = new HashSet<String>();
+		String imgTag = "<img";
+		
+		// img 태그가 있는 게시글만 추출
+		for(AdminBoardContentsGetAllVo vo : adminBoardContentsGetAll) {
+			String contents = vo.getContents();
+			
+			if(AssertUtil.notNull(contents) && contents.contains(imgTag)) {
+				imgList.add(contents);
+			}
+		}
+		
+		// img 태그의 src 속성 값만 추출
+		List<String> imgSrcList = new ArrayList<String>();
+		String regex = "<img[^>]+src=[\"'](/img/[^\"'>]+)[\"']";
+		Pattern pattern = Pattern.compile(regex);
+		
+		for(String img : imgList) {
+			Matcher matcher = pattern.matcher(img);
+			
+			while(matcher.find()) {
+				imgSrcList.add(matcher.group(1));
+			}
+		}
+		
+		// 이미지 경로 바인딩 path 제거한 uuid 파일명 + 확장자만 추출
+		fileNameList.addAll(
+			imgSrcList.stream()
+			.map(path -> path.substring(path.lastIndexOf("/") + 1))
+			.collect(Collectors.toSet())
+		);
+		
+		fileNameList.addAll(
+			adminThumbnailNameGetAll.stream()
+			.map(name -> name.getName().substring(name.getName().lastIndexOf("/") + 1))
+			.collect(Collectors.toSet())
+		);
+		
+		// IOException 발생 시 Controller 쪽으로 예외 던지기
+		fileUtil.deleteFiles(fileNameList);
 	}
 	
 	public List<MenuCodeGetVo> menuCodeGet() {

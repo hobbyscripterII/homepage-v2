@@ -24,7 +24,7 @@ public class SecurityConfig {
 				.authorizeHttpRequests(a -> a
 						.requestMatchers(
 								// 자원
-								"/", "/css/**", "/js/**", "/img/**", "/image/", "/favicon.ico", "/.well-known/**",
+								"/", "/css/**", "/js/**", "/img/**", "/thumbnail/**", "/image/", "/favicon.ico", "/.well-known/**",
 								// 로그인/로그아웃
 								"/login", "/logout",
 								// 예외 처리

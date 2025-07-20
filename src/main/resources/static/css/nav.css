@@ -4,10 +4,14 @@ nav {
     /* 가로 스크롤 적용 */
     overflow-x: auto;
     white-space: nowrap;
-    border-bottom: 1px solid #e5e7eb;
+    border-left: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
     background-color: #fefefe;
     scrollbar-width: none;
-    -ms-overflow-style: none;
+    position: sticky;
+    top: 42px;
+    z-index: 9998;
 }
 nav::-webkit-scrollbar {
     display: none;

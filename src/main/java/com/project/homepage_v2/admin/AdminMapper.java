@@ -10,7 +10,9 @@ import com.project.homepage_v2.admin.dto.AdminBoardInsDto;
 import com.project.homepage_v2.admin.dto.AdminBoardUpdDto;
 import com.project.homepage_v2.admin.dto.ThumbnailInsDto;
 import com.project.homepage_v2.admin.dto.ThumbnailUpdDto;
+import com.project.homepage_v2.admin.vo.AdminBoardContentsGetAllVo;
 import com.project.homepage_v2.admin.vo.AdminBoardGetVo;
+import com.project.homepage_v2.admin.vo.AdminThumbnailNameGetAllVo;
 import com.project.homepage_v2.admin.vo.MenuCodeGetVo;
 import com.project.homepage_v2.board.vo.BoardSelVo;
 
@@ -32,4 +34,8 @@ public interface AdminMapper {
 	// 썸네일
 	int thumbnailIns(ThumbnailInsDto dto);
 	int thumbnailUpd(ThumbnailUpdDto dto);
+	
+	// 불필요 파일 제거
+	List<AdminBoardContentsGetAllVo> adminBoardContentsGetAll();
+	List<AdminThumbnailNameGetAllVo> adminThumbnailNameGetAll();
 }

@@ -43,3 +43,37 @@ $btnLogin.click(function() {
 		$f.submit();
 	}
 });
+
+// ---------- 불필요 파일 제거 ----------
+function removeFile() {
+	const CONFIRM_MSG = '불필요 파일을 제거하시겠습니까?';
+
+	showConfirmModal(CONFIRM_MSG,
+		function() {
+			$.ajax({
+				type : 'DELETE',
+				url : `/a/rm`,
+				processData : false,
+				contentType : false,
+				success : (data) => {
+					let status = data.status;
+					const SUCCESS_CODE = 200;
+					
+					console.log('data = ', data);
+					
+					return;
+					
+					if(status == SUCCESS_CODE) {
+						const MSG = '게시글 삭제가 완료되었습니다.<br>게시판 메인 화면으로 이동합니다.';
+						showModal(MSG);
+						
+						setTimeout(() => {
+							location.href = `/b/${boardUrl}`;
+						}, 1000);
+					}
+				}, error : (error) => {
+					console.error('error = ', error);
+				}
+			});
+	});
+}

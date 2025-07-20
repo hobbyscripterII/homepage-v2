@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html 	lang="en"
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+		layout:decorate="~{fragments/layout}"
+		layout:fragment="section">
+<section>
+    <!-- <h3 class="board-title">로그인</h3> -->
+
+	<table class="admin-table">
+		<thead>
+			<tr>
+				<th style="width: auto; text-align: center">작업명</th>
+				<th style="width: 40px; text-align: center">버튼</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td style="text-align: center">불필요 이미지 파일 제거</td>
+				<td style="text-align: center"><button class="admin-task-btn" type="button" onclick="removeFile()">실행</button></td>
+			</tr>
+		</tbody>
+	</table>
+	
+    <th:block th:replace="~{fragments/modal :: modal}"></th:block>
+	<script th:src="@{/js/admin.js}"></script>
+</section>
+</html>

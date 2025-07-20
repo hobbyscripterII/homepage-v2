@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	setVh();
+	// setVh();
 	$(window).on('resize', setVh);
 	
 	// nav 가로 스크롤 기능

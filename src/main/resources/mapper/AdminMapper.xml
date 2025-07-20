@@ -100,4 +100,12 @@
 	ON DUPLICATE KEY UPDATE
 	NAME = VALUES(NAME)
 </update>
+
+<!-- 불필요 파일 제거 -->
+<select id="adminBoardContentsGetAll" resultType="AdminBoardContentsGetAllVo">
+	SELECT CONTENTS FROM TBL_BOARD
+</select>
+<select id="adminThumbnailNameGetAll" resultType="AdminThumbnailNameGetAllVo">
+	SELECT NAME FROM TBL_THUMBNAIL
+</select>
 </mapper>

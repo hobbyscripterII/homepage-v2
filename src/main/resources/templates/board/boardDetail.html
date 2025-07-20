@@ -22,24 +22,17 @@
 	    
         <p class="post-title" th:text="*{title}"></p>
         <ul class="post-meta">
-            <!-- <li>관리자</li> -->
             <li th:text="*{createdAt}"></li>
-            <!-- <li>조회수 123</li> -->
         </ul>
     
         <!-- 썸네일이 있을 경우 썸네일 표출 -->
+        <!-- 
         <th:block th:if="*{thumbnail} != ''">
 	 		<div class="thumb center">
 		        <img th:src="@{{thumbnail}(thumbnail=*{thumbnail})}" alt="썸네일"/>
 		        <p>썸네일</p>
 	        </div>
     	</th:block>
-        
-        <!--
-        <div class="thumb center">
-            <img src="img/img-noimage.png" alt="앨범 커버"/>
-            <p>썸네일</p>
-        </div>
         -->
     	
     	<!-- 음악 추천 게시글일 경우 유튜브 영상 표출 -->

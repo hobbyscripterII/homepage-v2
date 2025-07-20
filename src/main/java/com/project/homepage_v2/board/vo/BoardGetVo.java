@@ -11,4 +11,6 @@ public class BoardGetVo {
 	private String title;
 	private String createdAt;
 	private String secYn;
+	private String thumbnail;
+	private String youtubeId;
 }

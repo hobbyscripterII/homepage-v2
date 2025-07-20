@@ -7,33 +7,31 @@
 		layout:fragment="section">
 <section>
 	<!-- 스크롤 요소 -->
-	<div class="scroll-area">
-		<!--
-		<div class="board-header">
-		    <div class="title-wrap">
-		        <h3 class="board-title" th:text="${BOARD_NAME}"></h3>
-		    </div>
-		    <th:block sec:authorize="isAuthenticated()"><a href="board-create.html" class="btn btn-create">작성</a></th:block>
-		</div>
-		-->
-
 	    <!-- 카드 -->
-	    <th:block th:each="d : ${DATA}" th:object="${d}">
-		    <a th:href="@{/b/{url}/{iboard}(url=${BOARD_URL},iboard=${d.iboard})}" class="card">
-		    <div class="card-content">
-		        <!--
-		        <div class="thumb"><img src="img/img-noimage.png" alt="앨범 커버"/></div>
-		        -->
-		        <p class="meta"><span class="category" th:text="*{boardName}"></span><span class="date" th:text="*{createdAt}"></span></p>
-		        <h4 class="title" th:text="*{title}"></h4>
-		        <!--
-		        <p class="desc">국민의 모든 자유와 권리는 국가안전보장·질서유지 또는 공공복리를 위하여 필요한 경우에 한하여 법률로써 제한할 수 있으며, 제한하는 경우에도 자유와 권리의 본질적인 내용을 침해할 수 없다.</p>
-		        -->
-		    </div>
-		    </a>
-	    </th:block>
+		<th:block th:each="d : ${DATA}" th:object="${d}">
+			<a th:href="@{/b/{url}/{iboard}(url=${BOARD_URL}, iboard=${d.iboard})}" class="card card-horizontal">
+				<!-- 
+				<th:block th:if="*{thumbnail != ''}">
+					<div class="thumb-left">
+						<img th:src="*{thumbnail}" alt="썸네일" />
+					</div>
+				</th:block>
+				-->
+				<th:block th:if="*{youtubeId != ''}">
+					<div class="thumb-left">
+						<img th:src="|https://img.youtube.com/vi/*{youtubeId}/0.jpg|" alt="썸네일" />
+					</div>
+				</th:block>
+			
+			    <div class="card-content">
+					<p class="category" th:text="*{boardName}"></p>
+					<p class="date" th:text="*{createdAt}"></p>
+			
+				<h4 class="title" th:text="*{title}"></h4>
+			    </div>
+			</a>
+		</th:block>
 	
 		<div th:replace="~{fragments/pagination :: pagination}"></div>
-	</div>
 </section>
 </html>

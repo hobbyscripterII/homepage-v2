@@ -24,7 +24,7 @@ public class ImageUploadController {
 		try {
 			ModelAndView mv = new ModelAndView("jsonView");
 			MultipartFile mf = request.getFile("upload");
-			String path = fileUtil.fileUpload(mf, "/img/");
+			String path = fileUtil.uploadFile(mf, "/img/");
 			
 			mv.addObject("uploaded", true);
 			mv.addObject("url", path);

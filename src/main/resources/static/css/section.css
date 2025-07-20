@@ -2,12 +2,15 @@ section {
     flex: 1;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    padding: 10px;
+    /* overflow: hidden; */
+    padding: 12px;
+    background-color: #fff;
+    border-left: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb;
 }
 .scroll-area {
     flex: 1;
-    overflow-y: auto; /* y축 넘칠 경우 스크롤 */
+    /* overflow-y: auto; */ /* y축 넘칠 경우 스크롤 */
     padding-right: 5px;
 }
 
@@ -36,16 +39,18 @@ section {
     transform: translateY(-50%);
     font-size: 13px;
 }
+
+/* 게시판 카드 */
 .card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-    padding: 0.85rem;
+    padding: 0.6rem;
     border: 1px solid #e0e0e0;
-    background-color: #f9f9fb;
-    border-radius: 6px;
     margin-bottom: 12px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+	background-color: #fff;
+	border-radius: 6px;
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .card:hover {
@@ -53,29 +58,18 @@ section {
     box-shadow: 0 3px 10px rgba(0,0,0,0.06);
 }
 .card p, .desc {
-    font-size: 12.5px;
+    font-size: 11px;
     color: #444;
+    font-weight: 300;
 }
-.thumb img {
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    border-radius: 4px;
-    max-height: 300px;
-}
-.thumb.center {
-    text-align: center;
-}
-.thumb p {
-    color: #777;
-    font-size: 12.5px;
-    margin-bottom: 8px;
+.card.card-horizontal {
+	flex-direction: row;
+	align-items: center;
 }
 .card .meta {
     font-size: 12px;
     color: #999;
     display: flex;
-    justify-content: space-between;
 }
 .card .title {
     font-size: 14px;
@@ -85,8 +79,8 @@ section {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    width: 245px;
 }
-
 /* 게시판 목록 내용 미리보기 */
 .card .desc {
     color: #444;
@@ -98,6 +92,41 @@ section {
 }
 .card.white {
     background-color: #fff;
+}
+
+.category {
+	margin-right: 3px;
+}
+
+/* 왼쪽 썸네일 박스 */
+.thumb-left {
+	width: 60px;
+	height: 60px;
+	flex-shrink: 0;
+	border-radius: 10px;
+	overflow: hidden;
+}
+.thumb-left img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 4px;
+	transform: scale(1.4);
+}
+.thumb img {
+    width: 100%;
+    aspect-ratio: 10/5;
+    object-fit: cover;
+    border-radius: 4px;
+    max-height: 300px;
+}
+.thumb.center {
+    text-align: center;
+}
+.thumb p {
+    color: #777;
+    font-size: 12.5px;
+    margin-bottom: 8px;
 }
 
 /* 페이지네이션 */
@@ -277,7 +306,7 @@ section {
     border-radius: 3px;
 }
 .ck.ck-editor__main > .ck-editor__editable {
-    height: 460px !important;
+    min-height: 355px;
 }
 .ck-content p {
     font-size: 14px;
@@ -474,7 +503,7 @@ section {
 }
 .about-info li strong {
   display: inline-block;
-  width: 70px;
+  width: 90px;
   color: #222;
 }
 .about-info li a {
@@ -528,7 +557,7 @@ section {
 	gap: 8px;
 	margin: 2px 0;
 }
-.admin-btn-wrap button {
+.admin-btn-wrap button, .admin-task-btn {
 	width: 100%;
 	background-color: #fff;
 	color: #222;
@@ -541,7 +570,10 @@ section {
 	box-shadow: 0 1px 2px rgba(0,0,0,0.04);
 	transition: background-color 0.2s ease;
 }
-.admin-btn-wrap button:hover {
+.admin-task-btn {
+	padding: 4px;
+}
+.admin-btn-wrap button:hover, .admin-task-btn:hover {
 	background-color: #f6f6f6;
 }
 .admin-table {

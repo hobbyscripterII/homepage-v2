@@ -25,12 +25,12 @@ import com.project.homepage_v2.admin.dto.AdminBoardUpdDto;
 import com.project.homepage_v2.admin.vo.AdminBoardGetVo;
 import com.project.homepage_v2.admin.vo.AdminBoardInsVo;
 import com.project.homepage_v2.api.ApiResponse;
-import com.project.homepage_v2.api.ApiStatus;
 import com.project.homepage_v2.board.vo.BoardSelVo;
 import com.project.homepage_v2.cmmn.Pagination;
 import com.project.homepage_v2.cmmn.ResultVo;
 import com.project.homepage_v2.cmmn.enums.Menu;
 
+import static com.project.homepage_v2.api.ApiStatus.*;
 import static com.project.homepage_v2.cmmn.Const.*;
 
 import lombok.RequiredArgsConstructor;
@@ -67,6 +67,11 @@ public class AdminController {
 		
 		return "admin/admin";
 	}
+
+	@GetMapping("/etc")
+	public String adminEtc(Model model) {
+		return "admin/adminEtc";
+	}
 	
 	@GetMapping("/i")
 	public String adminBoardInsert(Model model) {
@@ -101,8 +106,8 @@ public class AdminController {
 			
 			apiResponse = ApiResponse.success(vo);
 		} catch(IOException | SQLException e) {
-			apiResponse = ApiResponse.error(ApiStatus.INTERNAL_SERVER_ERROR.getStatusCode(), 
-											ApiStatus.INTERNAL_SERVER_ERROR.getMessage(), 
+			apiResponse = ApiResponse.error(INTERNAL_SERVER_ERROR.getStatusCode(), 
+											INTERNAL_SERVER_ERROR.getMessage(), 
 											e.getMessage());
 		}
 		
@@ -124,8 +129,8 @@ public class AdminController {
 
 			apiResponse = ApiResponse.success(vo);
 		} catch (IOException | SQLException e) {
-			apiResponse = ApiResponse.error(ApiStatus.INTERNAL_SERVER_ERROR.getStatusCode(),
-											ApiStatus.INTERNAL_SERVER_ERROR.getMessage(), e.getMessage());
+			apiResponse = ApiResponse.error(INTERNAL_SERVER_ERROR.getStatusCode(),
+											INTERNAL_SERVER_ERROR.getMessage(), e.getMessage());
 		}
 
 		return ResponseEntity.ok(apiResponse);
@@ -143,13 +148,31 @@ public class AdminController {
 
 			apiResponse = ApiResponse.success(vo);
 		} catch (SQLException e) {
-			apiResponse = ApiResponse.error(ApiStatus.INTERNAL_SERVER_ERROR.getStatusCode(),
-											ApiStatus.INTERNAL_SERVER_ERROR.getMessage(), e.getMessage());
+			apiResponse = ApiResponse.error(INTERNAL_SERVER_ERROR.getStatusCode(),
+											INTERNAL_SERVER_ERROR.getMessage(), e.getMessage());
 		}
 
 		return ResponseEntity.ok(apiResponse);
 	}
 
+	@ResponseBody
+	@DeleteMapping("/rm")
+	public ResponseEntity<ApiResponse<ResultVo>> adminBoardRemoveFileTask() {
+		ApiResponse<ResultVo> apiResponse = null;
+
+		try {
+			service.adminBoardRemoveFileTask();
+			
+			ResultVo vo = new ResultVo(SUCCESS_CODE);
+			apiResponse = ApiResponse.success(vo);
+		} catch (IOException e) {
+			apiResponse = ApiResponse.error(INTERNAL_SERVER_ERROR.getStatusCode(),
+											INTERNAL_SERVER_ERROR.getMessage(), e.getMessage());
+		}
+		
+		return ResponseEntity.ok(apiResponse);
+	}
+	
 	private int getOffset(int page, int amount) {
 		return (page == 1 ? 0 : (page - 1) * amount);
 	}

@@ -3,11 +3,13 @@
 <mapper namespace="com.project.homepage_v2.home.HomeMapper">
 <!-- 최신 게시글 2개 불러오기 -->
 <select id="latestPostGet" resultType="LatestPostGetVo">
-	SELECT IBOARD, ICODE, TITLE, CREATED_AT
-	FROM TBL_BOARD
-	WHERE DEL_YN = 'N'
-		AND SEC_YN = 'N'
-	ORDER BY IBOARD DESC
+	SELECT B.IBOARD, B.ICODE, B.TITLE, IFNULL(T.NAME, '') AS THUMBNAIL, IFNULL(B.YOUTUBE_ID, '') AS YOUTUBE_ID, B.CREATED_AT
+	FROM TBL_BOARD B
+	LEFT JOIN TBL_THUMBNAIL T
+		ON B.IBOARD = T.IBOARD
+	WHERE B.DEL_YN = 'N'
+		AND B.SEC_YN = 'N'
+	ORDER BY B.IBOARD DESC
 	LIMIT 2
 </select>
 </mapper>
