@@ -79,7 +79,6 @@ section {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    width: 245px;
 }
 /* 게시판 목록 내용 미리보기 */
 .card .desc {
@@ -92,6 +91,9 @@ section {
 }
 .card.white {
     background-color: #fff;
+}
+.card-content {
+	width: 100%;	
 }
 
 .category {

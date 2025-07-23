@@ -156,11 +156,17 @@ function update() {
 	let iboard = $('#iboard').val(); // hidden
 	
 	if(title == '' || title == null) {
-		showModal('제목을 입력해주세요.'); return;
+		showModal('제목을 입력해주세요.'); $title.focus(); return;
 	} else if(contents == '' || contents == null) {
-		showModal('내용을 입력해주세요.'); return;
+		showModal('내용을 입력해주세요.'); $contents.focus(); return;
 	} else if(menu == 'music' && youtubeId == '' || youtubeId == null) {
-		showModal('유튜브 링크 주소를 입력해주세요.'); return;
+		showModal('유튜브 링크 주소를 입력해주세요.'); $youtubeId.focus(); return;
+	}
+	
+	if(title.length > 190) {
+		showModal('제목은 190자 이내로 입력해주세요.'); $title.focus(); return;
+	} else if(contents.length > 9900) {
+		showModal('내용은 9900자 이내로 입력해주세요.'); $contents.focus(); return;
 	}
 	
 	const CONFIRM_MSG = '게시글을 수정하시겠습니까?';
