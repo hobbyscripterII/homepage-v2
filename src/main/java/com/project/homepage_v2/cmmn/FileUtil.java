@@ -2,6 +2,7 @@ package com.project.homepage_v2.cmmn;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.slf4j.Slf4j;
+import net.coobird.thumbnailator.Thumbnails;
 
 @Slf4j
 @Component
@@ -25,7 +27,7 @@ public class FileUtil {
 	
 	public String uploadFile(MultipartFile mf, String suffixPath) throws IOException {
 		String fileName = uuid(mf);
-		Path  path = Paths.get(PREFIX_PATH);
+		Path path = Paths.get(PREFIX_PATH);
 		
 		if(!Files.exists(path)) {
 			try {
@@ -39,10 +41,19 @@ public class FileUtil {
 		String uploadPath = suffixPath + fileName; // WebConfig를 통해 연결되는 외부 리소스 경로
 		File saveFile = new File(savePath);
 		
-		try {
+		// 이미지일 경우에만 이미지 리사이즈 진행
+		if(isImage(mf)) {
+			try(InputStream inputStream = mf.getInputStream()) {
+				Thumbnails.of(inputStream)
+				.size(600, 600)      // 사진 크기
+//				.scale(1.0)          // 해상도
+				.outputQuality(0.6)  // 압축 품질
+				.toFile(saveFile);   // 이미지 저장
+			} catch(IOException e) {
+				throw new IOException(e);
+			}
+		} else {
 			mf.transferTo(saveFile);
-		} catch(IOException e) {
-			throw new IOException(e);
 		}
 		
 		return uploadPath;
@@ -94,5 +105,11 @@ public class FileUtil {
 		String uuid = (String.valueOf(UUID.randomUUID())) + ext; // UUID + 확장자
 		
 		return uuid;
+	}
+	
+	private static boolean isImage(MultipartFile file) {
+		String name = file.getOriginalFilename().toLowerCase();
+		
+		return name.endsWith(".jpg") || name.endsWith(".jpeg") || name.endsWith(".png") || name.endsWith(".webp");
 	}
 }

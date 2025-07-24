@@ -46,7 +46,7 @@ $btnLogin.click(function() {
 
 // ---------- 불필요 파일 제거 ----------
 function removeFile() {
-	const CONFIRM_MSG = '불필요 파일을 제거하시겠습니까?';
+	const CONFIRM_MSG = '불필요 이미지 파일을 제거하시겠습니까?';
 
 	showConfirmModal(CONFIRM_MSG,
 		function() {
@@ -59,20 +59,13 @@ function removeFile() {
 					let status = data.status;
 					const SUCCESS_CODE = 200;
 					
-					console.log('data = ', data);
-					
-					return;
-					
 					if(status == SUCCESS_CODE) {
-						const MSG = '게시글 삭제가 완료되었습니다.<br>게시판 메인 화면으로 이동합니다.';
-						showModal(MSG);
+						const MSG = '불필요 이미지 파일이 제거되었습니다.';
 						
-						setTimeout(() => {
-							location.href = `/b/${boardUrl}`;
-						}, 1000);
+						showModal(MSG);
 					}
 				}, error : (error) => {
-					console.error('error = ', error);
+					showModal(error);
 				}
 			});
 	});

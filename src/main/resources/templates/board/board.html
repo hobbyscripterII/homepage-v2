@@ -6,32 +6,29 @@
 		layout:decorate="~{fragments/layout}"
 		layout:fragment="section">
 <section>
-	<!-- 스크롤 요소 -->
-	    <!-- 카드 -->
-		<th:block th:each="d : ${DATA}" th:object="${d}">
-			<a th:href="@{/b/{url}/{iboard}(url=${BOARD_URL}, iboard=${d.iboard})}" class="card card-horizontal">
-				<!-- 
-				<th:block th:if="*{thumbnail != ''}">
-					<div class="thumb-left">
-						<img th:src="*{thumbnail}" alt="썸네일" />
-					</div>
-				</th:block>
-				-->
-				<th:block th:if="*{youtubeId != ''}">
-					<div class="thumb-left">
-						<img th:src="|https://img.youtube.com/vi/*{youtubeId}/0.jpg|" alt="썸네일" />
-					</div>
-				</th:block>
-			
-			    <div class="card-content">
-					<p class="category" th:text="*{boardName}"></p>
-					<p class="date" th:text="*{createdAt}"></p>
-			
+    <!-- 카드 -->
+	<th:block th:each="d : ${DATA}" th:object="${d}">
+		<a th:href="@{/b/{url}/{iboard}(url=${BOARD_URL}, iboard=${d.iboard})}" class="card card-horizontal">
+			<th:block th:if="*{thumbnail != ''}">
+				<div class="thumb-left">
+					<img th:src="*{thumbnail}" alt="썸네일" />
+				</div>
+			</th:block>
+			<th:block th:if="*{youtubeId != ''}">
+				<div class="thumb-left">
+					<img th:src="|https://img.youtube.com/vi/*{youtubeId}/0.jpg|" alt="썸네일" />
+				</div>
+			</th:block>
+		
+		    <div class="card-content">
+				<p class="category" th:text="*{boardName}"></p>
+				<p class="date" th:text="*{createdAt}"></p>
+		
 				<h4 class="title" th:text="*{title}"></h4>
-			    </div>
-			</a>
-		</th:block>
-	
-		<div th:replace="~{fragments/pagination :: pagination}"></div>
+		    </div>
+		</a>
+	</th:block>
+
+	<div th:replace="~{fragments/pagination :: pagination}"></div>
 </section>
 </html>
