@@ -21,9 +21,10 @@
 			</th:block>
 		
 		    <div class="card-content">
-				<p class="category" th:text="*{boardName}"></p>
-				<p class="date" th:text="*{createdAt}"></p>
-		
+		    	<p class="meta">
+					<p class="category" th:text="*{boardName}"></p>
+					<p class="date" th:text="*{createdAt}"></p>
+		    	</p>
 				<h4 class="title" th:text="*{title}"></h4>
 		    </div>
 		</a>

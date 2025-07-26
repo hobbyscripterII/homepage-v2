@@ -1,11 +1,12 @@
 header {
     padding: 7px 0;
-    background-color: #f9f9f9;
+    background-color: #233067;
     text-align: center;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border: 1px solid #dbdbdb;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border: 1px solid #233067;
 }
 header a h3{
-    color: #333;
+    color: #fff;
+    font-weight: 400;
 }

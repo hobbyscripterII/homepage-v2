@@ -21,7 +21,6 @@ input {
 }
 #wrap {
     max-width: 376px;
-    border-radius: 10px;
     height: auto;
     margin: 0 auto;
     display: flex;

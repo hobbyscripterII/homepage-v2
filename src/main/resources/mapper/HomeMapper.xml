@@ -10,6 +10,6 @@
 	WHERE B.DEL_YN = 'N'
 		AND B.SEC_YN = 'N'
 	ORDER BY B.IBOARD DESC
-	LIMIT 2
+	LIMIT 3
 </select>
 </mapper>
