@@ -10,12 +10,21 @@
 	<link rel="favicon" href="/favicon.ico" />
     <title>이주영 홈페이지</title>
     
-    <link rel="stylesheet" th:href="@{/css/cmmn.css}">
+    <link rel="stylesheet" th:href="@{|/css/${cssVersion}/cmmn.css|}">
+    <link rel="stylesheet" th:href="@{|/css/${cssVersion}/header.css|}">
+    <link rel="stylesheet" th:href="@{|/css/${cssVersion}/nav.css|}">
+    <link rel="stylesheet" th:href="@{|/css/${cssVersion}/section.css|}">
+    <link rel="stylesheet" th:href="@{|/css/${cssVersion}/footer.css|}">
+    <link rel="stylesheet" th:href="@{|/css/${cssVersion}/modal.css|}">
+
+	<!--
+	<link rel="stylesheet" th:href="@{/css/cmmn.css}">
 	<link rel="stylesheet" th:href="@{/css/header.css}">
 	<link rel="stylesheet" th:href="@{/css/nav.css}">
 	<link rel="stylesheet" th:href="@{/css/section.css}">
 	<link rel="stylesheet" th:href="@{/css/footer.css}">
 	<link rel="stylesheet" th:href="@{/css/modal.css}">
+	-->
 
 	<!-- CDN -->
     <link href="https://cdn.jsdelivr.net/npm/spoqa-han-sans@3.3.0/css/SpoqaHanSansNeo.min.css" rel="stylesheet">

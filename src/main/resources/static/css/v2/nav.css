@@ -1,0 +1,5 @@
+nav { padding: 6px 12px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; background: #fff; border-bottom: 1px solid var(--line-300); }
+nav::-webkit-scrollbar { display: none; }
+nav a { display: inline-block; color: #2f2f2f; font-size: 13.5px; font-weight: 600; padding: 8px 14px 10px; border-bottom: 2px solid transparent; transition: color .15s ease, border-color .15s ease, background .15s ease; }
+nav a:hover { color: var(--ink-900); border-bottom: 2px solid var(--pink-200); background: var(--pink-50); }
+nav a.active { color: var(--ink-900); border-bottom: 3px solid var(--yell-400); background: var(--yell-50); }

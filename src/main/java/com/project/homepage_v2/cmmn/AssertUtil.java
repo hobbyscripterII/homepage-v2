@@ -5,6 +5,10 @@ public class AssertUtil {
 		return result == 1;
 	}
 	
+	public static boolean notNull(String str) {
+		return str != null || str != "";
+	}
+	
 	public static boolean notNull(Object obj) {
 		return obj != null;
 	}
