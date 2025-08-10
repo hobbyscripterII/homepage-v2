@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	starfield();
+	
 	// setVh();
 	$(window).on('resize', setVh);
 	
@@ -50,4 +52,36 @@ function setVh() {
 	let vh = window.innerHeight * 0.01;
 	
 	document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+function starfield() {
+	let $body = $('body');
+	let $container = $('<div class="starfield"></div>');
+	
+	$body.append($container);
+
+	let colors = ['var(--pink-100)', 'var(--yell-100)', 'var(--pink-200)', 'var(--yell-200)'];
+	let STAR_COUNT = window.matchMedia('(min-width: 768px)').matches ? 120 : 80;
+
+	for(let i = 0; i < STAR_COUNT; i++) {
+	    let $s = $('<span class="star"></span>');
+	    let size = 4 + Math.random() * 4;
+		
+	    $s.css({
+	        color : colors[Math.floor(Math.random() * colors.length)],
+	        width : size + 'px',
+	        height : size + 'px',
+	        left : (Math.random() * 100) + '%'
+	    });
+
+	    let fall  = 6 + Math.random() * 6;
+	    let delay = -Math.random() * 12;
+
+	    $s.css({
+	        animationDuration: fall + 's, ' + (2 + Math.random() * 2) + 's',
+	        animationDelay: delay + 's, ' + (Math.random() * 2) + 's'
+	    });
+
+	    $container.append($s);
+	}
 }

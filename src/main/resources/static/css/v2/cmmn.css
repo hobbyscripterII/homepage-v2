@@ -53,3 +53,59 @@ input { box-sizing: border-box; }
 .btn-create:hover { background: var(--yell-200); }
 .btn-edit:hover   { background: var(--pink-100); }
 .btn-delete:hover { background: var(--pink-50); }
+
+/* ================================================================================ */
+html, body {
+  background: var(--bg);
+  color: var(--ink-900);
+}
+
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.starfield .star {
+  position: absolute;
+  top: -12px;
+  background: currentColor;
+  color: var(--pink-200);
+  width: 4px;
+  height: 4px;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  will-change: transform, opacity;
+  animation-name: star-fall, star-twinkle;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+}
+
+@keyframes star-fall {
+  to {
+    transform: translate3d(0, 110vh, 0);
+  }
+}
+@keyframes star-twinkle {
+  0%, 100% { opacity: .9; }
+  50% { opacity: .4; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starfield .star {
+    animation: none;
+    opacity: .2;
+  }
+}

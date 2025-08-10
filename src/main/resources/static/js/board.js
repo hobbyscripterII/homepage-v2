@@ -66,6 +66,8 @@ function youtubeIdGet(url) {
 		
 		$thumbnailPreview.attr('src', attr);
 		$thumbnailPreview.css('display', 'block');
+		
+		$youtubeIdEl.val(youtubeId);
 	} else {
 		showModal('유튜브 링크를 다시 한 번 확인해주세요.');
 		
@@ -103,7 +105,7 @@ function insert() {
 		function() {
 			let formData = new FormData();
 			let dto = {menu : menu, title : title, contents : contents, youtubeId : youtubeId, secYn : secYn};	
-
+			
 			formData.append('dto', new Blob([JSON.stringify(dto)], {
 				type : 'application/json'
 			}));
