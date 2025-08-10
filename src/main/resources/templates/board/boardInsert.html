@@ -6,15 +6,8 @@
 		layout:decorate="~{fragments/layout}"
 		layout:fragment="section">
 <style>
-	iframe {
-		box-sizing: border-box;
-	    width: 100%;
-	    height: 200px;
-	}
-	img {
-		box-sizing: border-box;
-		max-width: 100%;
-	}
+	iframe { box-sizing: border-box; width: 100%; height: 200px; }
+	img { box-sizing: border-box; max-width: 100%; }
 </style>
 <section>
 	<!-- 게시글 작성 -->
@@ -30,6 +23,7 @@
 			<div class="admin-toolbar mt-2">
 				<select class="menu-list p-10">
 					<option value="notice">공지사항</option>
+					<option value="design">디자인</option>
 					<option value="music">음악</option>
 					<option value="photo">사진</option>
 					<option value="review">리뷰</option>
@@ -116,11 +110,26 @@
 <script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
 <script th:src="@{/js/board.js}"></script>
 <script th:inline="javascript">
+$(document).ready(function() {
+	let url = [[${BOARD_URL}]] || '';
+	
+	if(url) {
+		let $menuList = $('.menu-list');
+		
+		$menuList.val(url);
+		
+		let $menuListSelectedOption = $menuList.find('option:selected');
+		
+		$menuListSelectedOption.prependTo($menuList);
+	}
+});
+
 //ck editor5 초기화
 ClassicEditor.create(document.querySelector('#editor'), {
-	language : 'ko',
-	ckfinder : {uploadUrl : '/image_upload'},
-	toolbar  : ['heading', '|', 'bold', 'link', 'bulletedList', 'blockQuote', 'imageUpload', 'inertTable', 'undo', 'redo']
+	language   : 'ko',
+	ckfinder   : {uploadUrl : '/image_upload'},
+	mediaEmbed : {previewsInData: true},
+	toolbar    : ['heading', '|', 'bold', 'link', 'mediaEmbed', 'numberedList', 'bulletedList', 'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo']
 })
 .then(e => {
 	editor = e;

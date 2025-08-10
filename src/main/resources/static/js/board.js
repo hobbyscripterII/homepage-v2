@@ -63,7 +63,6 @@ function youtubeIdGet(url) {
 	
 	// 입력한 url에 유튜브 id가 있을 경우
 	if(youtubeId.length == 11) {
-		
 		$thumbnailPreview.attr('src', attr);
 		$thumbnailPreview.css('display', 'block');
 		

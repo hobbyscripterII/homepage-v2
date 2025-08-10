@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public enum Menu {
 	NOTICE("공지사항", "B001", "notice"),
+	DESIGN("디자인", "B006", "design"),
 	MUSIC("음악", "B004", "music"),
 	PHOTO("사진", "B003", "photo"),
 	REVIEW("리뷰", "B008", "review"),

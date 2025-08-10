@@ -38,74 +38,37 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 a { text-decoration: none; color: inherit; }
 body { width: 100%; padding: 20px; font-family: 'Spoqa Han Sans Neo', 'Pretendard', 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--ink-900); }
+html, body { background: var(--bg); color: var(--ink-900); }
 header, nav, footer { flex-shrink: 0; }
 input { box-sizing: border-box; }
 
 #wrap { max-width: 376px; margin: 0 auto; display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line-300); box-shadow: var(--shadow-1); }
 
-.btn { display: inline-flex; align-items: center; justify-content: center; height: calc(var(--ctl) - 8px); padding: 0 16px; font-size: 13px; font-weight: 600; letter-spacing: -0.2px; color: #111; background: linear-gradient(90deg, var(--pink-100), var(--yell-100)); border: 1px solid var(--line-300); border-radius: 0; transition: transform .06s ease, box-shadow .12s ease, background .2s ease; box-shadow: var(--shadow-1); }
-.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-2); }
-.btn-back   { background: var(--pink-100); }
+.btn { display: inline-flex; align-items: center; justify-content: center; height: calc(var(--ctl)- 8px); padding: 5px 16px; font-size: 13px; font-weight: 600; letter-spacing: -0.2px; color: #111; background: linear-gradient(90deg, var(--pink-100), var(--yell-100)); border: 1px solid var(--line-300); border-radius: 0; transition: transform .06s ease, box-shadow .12s ease, background .2s ease; box-shadow: var(--shadow-1); cursor: pointer; }
+/* .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-2); } */
+.btn-back { background: var(--pink-100); }
 .btn-create { background: var(--yell-100); }
-.btn-edit   { background: linear-gradient(90deg, var(--pink-50), var(--yell-50)); }
+.btn-edit { background: linear-gradient(90deg, var(--pink-50), var(--yell-50)); }
 .btn-delete { background: #fff; color: var(--ink-700); }
-.btn-back:hover   { background: var(--pink-200); }
+.btn-back:hover { background: var(--pink-200); }
 .btn-create:hover { background: var(--yell-200); }
-.btn-edit:hover   { background: var(--pink-100); }
+.btn-edit:hover { background: var(--pink-100); }
 .btn-delete:hover { background: var(--pink-50); }
 
-/* ================================================================================ */
-html, body {
-  background: var(--bg);
-  color: var(--ink-900);
-}
-
-.starfield {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.starfield .star {
-  position: absolute;
-  top: -12px;
-  background: currentColor;
-  color: var(--pink-200);
-  width: 4px;
-  height: 4px;
-  clip-path: polygon(
-    50% 0%,
-    61% 35%,
-    98% 35%,
-    68% 57%,
-    79% 91%,
-    50% 70%,
-    21% 91%,
-    32% 57%,
-    2% 35%,
-    39% 35%
-  );
-  will-change: transform, opacity;
-  animation-name: star-fall, star-twinkle;
-  animation-timing-function: linear, ease-in-out;
-  animation-iteration-count: infinite, infinite;
-}
+/* ============================== 별내리는 효과 ============================== */
+.starfield { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.starfield .star { position: absolute; top: -12px; background: currentColor; color: var(--pink-200); width: 4px; height: 4px; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); will-change: transform, opacity; animation-name: star-fall, star-twinkle; animation-timing-function: linear, ease-in-out; animation-iteration-count: infinite, infinite; }
 
 @keyframes star-fall {
-  to {
-    transform: translate3d(0, 110vh, 0);
-  }
+  to { transform: translate3d(0, 110vh, 0); }
 }
+
 @keyframes star-twinkle {
   0%, 100% { opacity: .9; }
   50% { opacity: .4; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .starfield .star {
-    animation: none;
-    opacity: .2;
-  }
+  .starfield .star { animation: none; opacity: .2; }
 }
+/* ============================== 별내리는 효과 ============================== */

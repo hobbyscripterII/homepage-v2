@@ -73,8 +73,12 @@ public class AdminController {
 		return "admin/adminEtc";
 	}
 	
-	@GetMapping("/i")
-	public String adminBoardInsert(Model model) {
+	@GetMapping("/i/{url}")
+	public String adminBoardInsert(@PathVariable("url") String url, Model model) {
+		log.info("url = {}", url);
+		
+		model.addAttribute(BOARD_URL, url);
+		
 		return "board/boardInsert";
 	}
 	
