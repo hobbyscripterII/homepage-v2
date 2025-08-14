@@ -33,9 +33,11 @@
 		</a>
 	</th:block>
 
-	<div class="post-buttons">
-		<button type="button" class="btn btn-edit" th:onclick="|location.href='@{/a/i/{url}(url=${BOARD_URL})}'|">작성</button>
-	</div>
+	<th:block sec:authorize="isAuthenticated()">
+		<div class="post-buttons">
+			<button type="button" class="btn btn-edit" th:onclick="|location.href='@{/a/i/{url}(url=${BOARD_URL})}'|">작성</button>
+		</div>
+	</th:block>
 	
 	<div th:replace="~{fragments/pagination :: pagination}"></div>
 </section>
