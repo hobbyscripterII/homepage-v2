@@ -8,13 +8,11 @@
 <section>
     <!-- <h3 class="board-title">로그인</h3> -->
 
-    <div>
-        <form id="f">
-            <input type="text" id="id" name="id" placeholder="아이디를 입력하세요."/>
-            <input type="password" id="pwd" name="pwd" placeholder="패스워드를 입력하세요."/>
-            <button type="button" id="btn-login" name="btn-login">로그인</button>
-        </form>
-    </div>
+	<form id="f">
+		<input type="text" id="id"  name="id"  class="win-input" placeholder="아이디를 입력하세요.">
+		<input type="password" id="pwd" name="pwd" class="win-input" placeholder="패스워드를 입력하세요.">
+		<button type="button" id="btn-login" class="win-btn">로그인</button>
+	</form>
     
     <th:block th:replace="~{fragments/modal :: modal}"></th:block>
 	<script th:src="@{/js/login.js}"></script>

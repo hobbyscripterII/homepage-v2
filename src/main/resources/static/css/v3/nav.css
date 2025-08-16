@@ -1,0 +1,4 @@
+#wrap > nav { display:flex; align-items:center; gap:2px; padding:2px; background:var(--win98-bg); border-right:1px solid var(--win98-border-mid); overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+#wrap > nav a.win-btn { flex: 0 0 auto; flex-shrink: 0; white-space: nowrap; min-width: unset; padding: 0 10px; }
+.win-btn--sm { min-width: auto;  height: 22px; line-height: 20px; padding: 0 8px; font-size: 12px; }
+.win-btn.is-active { color: #fff; background: var(--blue);  border: 2px solid var(--win98-border-deep); border-right-color: #fff; border-bottom-color: #fff; border-left-color: var(--win98-border-dark); border-top-color: var(--win98-border-dark); }

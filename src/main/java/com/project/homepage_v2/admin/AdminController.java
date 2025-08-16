@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,7 @@ import com.project.homepage_v2.admin.dto.AdminBoardUpdDto;
 import com.project.homepage_v2.admin.vo.AdminBoardGetVo;
 import com.project.homepage_v2.admin.vo.AdminBoardInsVo;
 import com.project.homepage_v2.api.ApiResponse;
+import com.project.homepage_v2.board.BoardService;
 import com.project.homepage_v2.board.vo.BoardSelVo;
 import com.project.homepage_v2.cmmn.Pagination;
 import com.project.homepage_v2.cmmn.ResultVo;
@@ -39,9 +41,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 @RequestMapping("/a")
-@RequiredArgsConstructor
 public class AdminController {
-	private final AdminService service;
+	private AdminService service;
+	private String cssVersion;
+	
+	public AdminController(@Value("${css.version}") String cssVersion, AdminService service) {
+		this.service = service;
+		this.cssVersion = cssVersion;
+	}
 	
 	@GetMapping("/{url}")
 	public String adminBoardGet(@PathVariable("url") String url,
@@ -75,11 +82,9 @@ public class AdminController {
 	
 	@GetMapping("/i/{url}")
 	public String adminBoardInsert(@PathVariable("url") String url, Model model) {
-		log.info("url = {}", url);
-		
 		model.addAttribute(BOARD_URL, url);
 		
-		return "board/boardInsert";
+		return "board/" + cssVersion + "/boardInsert";
 	}
 	
 	@GetMapping("/u/{iboard}")
@@ -93,7 +98,7 @@ public class AdminController {
 		model.addAttribute(BOARD_URL, url);
 		model.addAttribute(BOARD_NAME, name);
 		
-		return "board/boardInsert";
+		return "board/" + cssVersion + "/boardInsert";
 	}
 	
 	@ResponseBody

@@ -14,6 +14,8 @@ public class GlobalModelAttributes {
 
 	public GlobalModelAttributes(@Value("${css.version}") String cssVersion) {
 		this.cssVersion = cssVersion;
+		
+		log.info("현재 CSS 버전 : {}", cssVersion);
 	}
 
 	@ModelAttribute("cssVersion")

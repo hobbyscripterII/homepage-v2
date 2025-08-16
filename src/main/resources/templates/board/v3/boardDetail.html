@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html 	lang="en"
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+		layout:decorate="~{fragments/layout}"
+		layout:fragment="section">
+<style>
+	iframe { box-sizing: border-box; width: 100%; height: 200px; }
+	.thumb img { width: 50%; aspect-ratio: auto; }
+</style>
+<section th:object="${DATA}">
+    <!-- <h3 class="board-title" th:text="${BOARD_NAME}"></h3> -->
+    
+       <p class="post-title" th:text="*{title}"></p>
+       <ul class="post-meta">
+           <li th:text="*{createdAt}"></li>
+       </ul>
+   
+       <!-- 썸네일이 있을 경우 썸네일 표출 -->
+       <th:block th:if="${BOARD_URL == 'review' and DATA.thumbnail != ''}">
+ 		<div class="thumb center">
+	        <img th:src="@{{thumbnail}(thumbnail=*{thumbnail})}" alt="썸네일"/>
+	        <p>썸네일</p>
+        </div>
+   	</th:block>
+   	
+   	<!-- 음악 추천 게시글일 경우 유튜브 영상 표출 -->
+   	<th:block th:if="*{youtubeId} != '' and *{youtubeId} != null">
+   		<iframe th:src="'https://www.youtube.com/embed/' + *{youtubeId}"></iframe>
+   	</th:block>
+   	
+   	<input type="hidden" id="iboard" th:value="${DATA.iboard}"/>
+   	<input type="hidden" id="BOARD_URL" th:value="${BOARD_URL}"/>
+   	
+       <!-- 본문 -->
+       <div class="post-content" th:utext="*{contents}">
+       </div>
+   
+    <div class="post-nav-wrap">
+    	<th:block th:if="${NEXT_POST == null}">
+	        <a href="#" class="post-nav prev">
+	            <span class="label">다음 글</span>
+	            <span class="title">다음 글이 없습니다.</span>
+	        </a>
+    	</th:block>
+    	<th:block th:if="${NEXT_POST != null}">
+        <a th:href="@{/b/{url}/{iboard}(url=${BOARD_URL},iboard=*{iboard})}" class="post-nav next" th:object="${NEXT_POST}">
+            <span class="label">다음 글</span>
+            <span class="title" th:text="*{title}"></span>
+        </a>
+    	</th:block>
+    	
+    	<th:block th:if="${PREV_POST == null}">
+	        <a href="#" class="post-nav prev">
+	            <span class="label">이전 글</span>
+	            <span class="title">이전 글이 없습니다.</span>
+	        </a>
+    	</th:block>
+    	<th:block th:if="${PREV_POST != null}">
+        <a th:href="@{/b/{url}/{iboard}(url=${BOARD_URL},iboard=*{iboard})}" class="post-nav prev" th:object="${PREV_POST}">
+            <span class="label">이전 글</span>
+            <span class="title" th:text="*{title}"></span>
+        </a>
+    	</th:block>
+    </div>
+
+    <div class="post-buttons">
+    	<th:block sec:authorize="hasRole('ADMIN')">
+	        <a href="#" class="win-btn" th:href="@{/a/u/{iboard}(iboard=${DATA.iboard})}">수정</a>
+	    	<a href="#" class="win-btn" onclick="del()">삭제</a>
+    	</th:block>
+        <a th:href="@{/b/{url}(url=${BOARD_URL})}" class="win-btn">목록</a>
+    </div>
+    
+    <th:block th:replace="~{fragments/modal :: modal}"></th:block>
+</section>
+
+<script th:src="@{/js/board.js}"></script>
+</html>

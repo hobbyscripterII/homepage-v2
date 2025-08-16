@@ -2,6 +2,7 @@ package com.project.homepage_v2.board;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,9 +28,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 @RequestMapping("/b")
-@RequiredArgsConstructor
 public class BoardController {
-	private final BoardService service;
+	private BoardService service;
+	private String cssVersion;
+
+	public BoardController(@Value("${css.version}") String cssVersion, BoardService service) {
+		this.service = service;
+		this.cssVersion = cssVersion;
+	}
 	
 	@GetMapping("/{url}")
 	public String board(@PathVariable("url") String url, 
@@ -56,7 +62,7 @@ public class BoardController {
 		model.addAttribute(BOARD_URL, url);
 		model.addAttribute(PAGINATION, pagination);
 		
-		return "board/board";
+		return "board/" + cssVersion + "/board";
 	}
 	
 	@GetMapping("/{url}/{iboard}")
@@ -77,7 +83,7 @@ public class BoardController {
 		model.addAttribute(BOARD_NAME, boardName);
 		model.addAttribute(BOARD_URL, url);
 		
-		return "board/boardDetail";
+		return "board/" + cssVersion + "/boardDetail";
 	}
 	
 	private int getOffset(int page, int amount) {

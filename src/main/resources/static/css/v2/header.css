@@ -1,4 +1,4 @@
 @font-face { font-family: 'Cafe24Meongi-W-v1.0'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/Cafe24Meongi-W-v1.0.woff2') format('woff2'); font-weight: normal; font-style: normal; }
-header { padding: 14px 0; background: linear-gradient(135deg, var(--pink-100) 0%, var(--pink-50) 25%, var(--yell-50) 75%, var(--yell-100) 100%); text-align: center; border-bottom: 1px solid var(--line-300); position: relative; overflow: hidden; }
+header { padding: 5px 0; background: linear-gradient(135deg, var(--pink-100) 0%, var(--pink-50) 25%, var(--yell-50) 75%, var(--yell-100) 100%); text-align: center; border-bottom: 1px solid var(--line-300); position: relative; overflow: hidden; }
 header::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255, 255, 255, 0.4) 2px, transparent 1px); background-size: 12px 12px; pointer-events: none;}
 header a h3 { font-family: 'Cafe24Meongi-W-v1.0'; font-size: 40px; position: relative; color: var(--ink-900); font-weight: 800; letter-spacing: 0.5px; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7); }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html 	lang="en"
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+		layout:decorate="~{fragments/layout}"
+		layout:fragment="section">
+<style>
+	table th:nth-child(1), table td:nth-child(1) { width: 55%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+	table th:nth-child(2), table td:nth-child(2) { width: 15%; }
+</style>
+<section>
+	<table class="notice-list">
+		<thead>
+			<tr>
+				<!-- <th>번호</th> -->
+				<th>제목</th>
+				<th>작성일</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="d : ${DATA}" th:object="${d}">
+				<!-- <td></td> -->
+				<td>
+					<a th:href="@{/b/{url}/{iboard}(url=${BOARD_URL}, iboard=${d.iboard})}">
+						<span th:text="*{title}"></span>
+					</a>
+				</td>
+				<td th:text="*{createdAt.substring(0, 10)}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<th:block sec:authorize="isAuthenticated()">
+		<div class="post-buttons">
+			<button type="button" class="win-btn" th:onclick="|location.href='@{/a/i/{url}(url=${BOARD_URL})}'|">작성</button>
+		</div>
+	</th:block>
+	
+	<div th:replace="~{fragments/pagination :: pagination}"></div>
+</section>
+</html>

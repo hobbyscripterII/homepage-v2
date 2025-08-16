@@ -4,22 +4,24 @@
 		xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 		th:fragment="nav">
 <nav>
-    <a th:href="@{/}">홈</a>
-    <a th:href="@{/about_me}">소개</a>
-    <a th:href="@{/b/notice}">공지사항</a>
-    <a th:href="@{/b/design}">디자인</a>
-    <a th:href="@{/b/music}">음악</a>
-    <a th:href="@{/b/photo}">사진</a>
-    <a th:href="@{/b/review}">리뷰</a>
-    <a th:href="@{/b/daily}">일상</a>
+    <a class="win-btn" th:href="@{/}">홈</a>
+    <a class="win-btn" th:href="@{/about_me}">소개</a>
+    <a class="win-btn" th:href="@{/b/notice}">공지사항</a>
+    <a class="win-btn" th:href="@{/b/design}">디자인</a>
+    <a class="win-btn" th:href="@{/b/music}">음악</a>
+    <a class="win-btn" th:href="@{/b/photo}">사진</a>
+    <a class="win-btn" th:href="@{/b/review}">리뷰</a>
+    <a class="win-btn" th:href="@{/b/daily}">일상</a>
     
+    <!--
 	<th:block sec:authorize="hasRole('ADMIN')">
-		<a th:href="@{/a/notice}">게시판 관리</a>
-		<a th:href="@{/a/etc}">기타 관리</a>
+		<a class="win-btn" th:href="@{/a/notice}">게시판 관리</a>
+		<a class="win-btn" th:href="@{/a/etc}">기타 관리</a>
 	</th:block>
+    -->
 	
     <!-- thymeleaf spring security를 이용한 로그인/로그아웃 표출 처리 -->
-    <th:block sec:authorize="isAnonymous()"><a th:href="@{/login}">로그인</a></th:block>
-	<th:block sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></th:block>
+    <th:block sec:authorize="isAnonymous()"><a class="win-btn" th:href="@{/login}">로그인</a></th:block>
+	<th:block sec:authorize="isAuthenticated()"><a class="win-btn" th:href="@{/logout}">로그아웃</a></th:block>
 </nav>
 </html>

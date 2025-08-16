@@ -19,6 +19,10 @@
 				    <th:block th:replace="~{fragments/nav :: nav}"></th:block>
 			    </th:block>
 			    
+     			<th:block th:case="'v3'">
+				    <th:block th:replace="~{fragments/nav :: nav}"></th:block>
+			    </th:block>
+			    
 		        <!-- 그 외 -->
 			    <th:block th:case="*">
 			    </th:block>

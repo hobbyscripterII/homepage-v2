@@ -1,0 +1,7 @@
+header { background: linear-gradient(#000080, #000064); color: #fff; padding: 3px 6px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+header h3 { color:#fff; font-weight: 800; }
+
+.win-controls { display:flex; gap:3px; }
+.win-controls .btn { width: 16px; height: 14px; padding:0; line-height:12px; }
+.win-controls .btn { background: #c0c0c0; color:#000; border: 2px solid #fff; border-right-color: #404040; border-bottom-color:#404040; border-left-color:#dfdfdf;  border-top-color:#dfdfdf; font-size: 10px; text-align:center; }
+.win-controls .btn:active { border: 2px solid #404040; border-right-color:#fff; border-bottom-color:#fff; border-left-color:#808080; border-top-color:#808080; background:#d4d0c8; }
